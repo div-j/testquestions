@@ -45,9 +45,8 @@ def num_each_col(color):
         if i == color:
             colors.insert(0,i)
             
-    print()
+#black colors
 num_each_col('BLACK')
-
 black_colors = colors.copy()
 print(black_colors)
 
