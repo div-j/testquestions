@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+      <h1>Summed Total Result for {{ result[0][0] }}</h1>
+
+    {% if result %}
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Party Abbreviation</th>
+            <th>Party Score</th>
+            <th>Total Vote</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in result %}
+            <tr>
+              <td>{{ row[0] }}</td>
+              <td>{{ row[1] }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
+    <h2>Total Score: {{ total_score }}</h2>
+  </div>
+{% endblock %}

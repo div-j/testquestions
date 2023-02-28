@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1>New Polling Unit Results</h1>
+                <form action="{{ url_for('new_polling_unit') }}" method="post">
+                    <div class="form-group">
+                        <label for="polling_unit_name">Polling Unit Name:</label>
+                        <input type="text" id="polling_unit_name" name="polling_unit_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ward_id">Ward Id:</label>
+                        <input type="number" id="ward_id" name="ward_id" class="form-control" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="polling_unit_id">Polling Unit Id:</label>
+                        <input type="number" id="polling_unit_id" name="polling_unit_id" class="form-control" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="entered_by_user">User:</label>
+                        <input type="text" id="entered_by_user" name="entered_by_user" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lga_name">LGA Name:</label>
+                        <select id="lga_name" name="lga_name" class="form-control" required>
+                            {% for lga in lgas %}
+                            <option value="{{ lga[0] }}">{{ lga[0] }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    {% for party in parties %}
+                    <div class="form-group">
+                        <label for="{{ party[1] }}">{{ party[0] }} Score:</label>
+                        <input type="number" id="{{ party[1] }}" name="party_score" min="0" class="form-control" required>
+                        <input type="hidden" name="party_abbreviation" value="{{ party[1] }}">
+                    </div>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
